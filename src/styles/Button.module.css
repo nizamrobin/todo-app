@@ -1,0 +1,44 @@
+.button {
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 3px;
+  border: 0;
+}
+
+.todoInputBtns {
+  display: flex;
+  margin-left: 20px;
+}
+
+.todoListItemBtns {
+  display: flex;
+  justify-content: space-around;
+}
+
+.btnTodoAdd,
+.btnDone,
+.btnEdit {
+  margin-right: 10px;
+}
+
+.btnTodoAdd {
+  background-color: #02c39a;
+  color: #fff;
+}
+.btnTodoCancel {
+  background-color: #dd2d4a;
+  color: #fff;
+}
+.btnDone {
+  background-color: #02c39a;
+  color: #fff;
+}
+
+.btnEdit {
+  background-color: #55dde0;
+  color: #fff;
+}
+.btnDelete {
+  background-color: #dd2d4a;
+  color: #fff;
+}
