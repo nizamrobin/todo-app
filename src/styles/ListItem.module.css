@@ -1,0 +1,14 @@
+.listItem {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
+}
+
+.listItemText {
+  margin-right: 20px;
+}
+
+.todoListItemBtns {
+  display: flex;
+  justify-content: space-around;
+}
