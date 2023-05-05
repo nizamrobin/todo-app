@@ -1,5 +1,11 @@
-export default function App() {
-  return <h1>Todo App</h1>;
-}
+import BtnTodoAd from "./components/BtnTodoAdd";
+import Button from "./components/Button";
 
-// export default App;
+export default function App() {
+  return (
+    <>
+      {/* <Button />; */}
+      <BtnTodoAd />
+    </>
+  );
+}
