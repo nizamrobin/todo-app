@@ -6,21 +6,15 @@ export default function ListItem({ text }) {
     <li className={classes.listItem}>
       <p class={classes.listItemText}>{text}</p>
       <div class={classes.listItemBtns}>
-        <Button
-          onClick="handleClick"
-          btnType="btnDone"
-          fontAwesome="fa-solid fa-check"
-        />
-        <Button
-          onClick="handleClick"
-          btnType="btnEdit"
-          fontAwesome="fa-solid fa-pen"
-        />
-        <Button
-          onClick="handleClick"
-          btnType="btnDelete"
-          fontAwesome="fa-solid fa-trash"
-        />
+        <Button onClick="handleClick" btnType="btnDone">
+          <i class="fa-solid fa-check"></i>
+        </Button>
+        <Button onClick="handleClick" btnType="btnEdit">
+          <i class="fa-solid fa-pen"></i>
+        </Button>
+        <Button onClick="handleClick" btnType="btnDelete">
+          <i class="fa-solid fa-trash"></i>
+        </Button>
       </div>
     </li>
   );
