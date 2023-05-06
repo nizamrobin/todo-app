@@ -7,7 +7,7 @@ export default function Button(props) {
       onClick={props.handleClick}
       className={`${classes.button} ${classes[props.btnType]}`}
     >
-      <i class={props.fontAwesome}></i>
+      {props.children}
     </button>
   );
 }

@@ -1,0 +1,10 @@
+.listItemInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f85e00;
+  padding: 10px;
+  margin: 5px 0;
+  color: #f0f0f0;
+  border-radius: 5px;
+}
