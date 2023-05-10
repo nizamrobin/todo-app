@@ -1,6 +1,6 @@
 import classes from "../styles/TextArea.module.css";
 
-export default function TextArea() {
+export default function TextArea(placeholder) {
   return (
     <textarea
       name="todoInput"

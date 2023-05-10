@@ -1,0 +1,27 @@
+.todo {
+  min-height: inherit;
+  background-color: #def5ff;
+  border-radius: 10px 10px 0 0;
+}
+
+/* todo Title */
+.todoTitle {
+  text-align: center;
+  text-transform: capitalize;
+  padding: 20px 0 0 0;
+}
+
+/* New Todo */
+.todoNew {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  margin: 20px 10px 30px;
+  background-color: #cee5f2;
+  border-radius: 5px;
+}
+
+.todoInputBtns {
+  display: flex;
+  margin-left: 20px;
+}

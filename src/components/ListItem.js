@@ -4,8 +4,8 @@ import classes from "../styles/ListItem.module.css";
 export default function ListItem({ text }) {
   return (
     <li className={classes.listItem}>
-      <p class={classes.listItemText}>{text}</p>
-      <div class={classes.listItemBtns}>
+      <p className={classes.listItemText}>{text}</p>
+      <div className={classes.listItemBtns}>
         <Button onClick="handleClick" btnType="btnDone">
           <i class="fa-solid fa-check"></i>
         </Button>

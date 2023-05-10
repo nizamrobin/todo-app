@@ -1,10 +1,10 @@
-import TodoList from "./components/TodoList";
+// import TodoList from "./components/TodoList";
+import Todo from "./components/Todo";
 import "./styles/global.css";
 
 export default function App() {
-  return (
-    <>
-      <TodoList />
-    </>
-  );
+  // const placeholder = (a) => {
+  //   console.log(a);
+  // };
+  return <Todo />;
 }
