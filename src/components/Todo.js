@@ -20,12 +20,19 @@ export default function Todo() {
   };
 
   // add todo to list and clears textarea field when button add is clicked
-  const handleClick = () => {
-    const id = uuidv4().slice(0, 8);
-    set(ref(db, id), {
-      todo,
-    });
-    setTodo("");
+  const handleClick = (e) => {
+    // console.log(e.currentTarge.name);
+    if (e === "add") {
+      const id = uuidv4().slice(0, 8);
+      todo &&
+        set(ref(db, id), {
+          todo,
+          id,
+        });
+      setTodo("");
+    } else {
+      setTodo("");
+    }
   };
 
   // Read data from database(here: firebase)
@@ -33,7 +40,6 @@ export default function Todo() {
     onValue(ref(db), (snapshot) => {
       setTodos([]);
       const data = snapshot.val();
-      console.log(data);
       if (data !== null) {
         Object.values(data).map((todo) =>
           setTodos((oldArray) => [...oldArray, todo])
@@ -49,17 +55,17 @@ export default function Todo() {
       <section className={classes.todoNew}>
         <TextArea textInput={textInputHandler} value={todo} />
         <div className={classes.todoInputBtns}>
-          <Button onClick={handleClick} btnType="btnTodoAdd">
+          <Button onClick={handleClick} btnType="btnTodoAdd" name="add">
             <i class="fa-solid fa-plus"></i>
           </Button>
-          <Button onClick={handleClick} btnType="btnTodoCancel">
+          <Button onClick={handleClick} btnType="btnTodoCancel" name="cancel">
             <i class="fa-solid fa-xmark"></i>
           </Button>
         </div>
       </section>
       <TodoList>
         {todos.map((todo) => (
-          <ListItem text={todo.todo} />
+          <ListItem text={todo.todo} id={todo.id} />
         ))}
       </TodoList>
 
