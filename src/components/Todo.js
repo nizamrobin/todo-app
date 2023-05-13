@@ -13,6 +13,7 @@ export default function Todo() {
   const db = getDatabase(app);
   const [todo, setTodo] = useState("");
   const [todos, setTodos] = useState([]);
+  const [addNotification, setAddNotification] = useState(false);
 
   // fetch the input of textarea input field of TextArea comp and handle it
   const textInputHandler = (textReceived) => {
@@ -29,6 +30,10 @@ export default function Todo() {
           todo,
           id,
         });
+      setAddNotification(true);
+      setTimeout(() => {
+        setAddNotification(false);
+      }, 1000);
       setTodo("");
     } else {
       setTodo("");
@@ -63,13 +68,17 @@ export default function Todo() {
           </Button>
         </div>
       </section>
-      <TodoList>
-        {todos.map((todo) => (
-          <ListItem text={todo.todo} id={todo.id} />
-        ))}
-      </TodoList>
+      {todos.length > 0 && (
+        <TodoList>
+          {todos.map((todo) => (
+            <ListItem text={todo.todo} id={todo.id} />
+          ))}
+        </TodoList>
+      )}
 
-      <Notification notification_msg="Your new todo has been added!" />
+      {addNotification && (
+        <Notification notification_msg="Your new todo has been added!" />
+      )}
     </article>
   );
 }

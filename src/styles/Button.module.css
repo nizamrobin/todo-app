@@ -15,10 +15,10 @@
   justify-content: space-around;
 }
 
-.btnTodoAdd,
-.btnDone,
+.btnTodoCancel,
+.btnDelete,
 .btnEdit {
-  margin-right: 10px;
+  margin-left: 10px;
 }
 
 .btnTodoAdd {
