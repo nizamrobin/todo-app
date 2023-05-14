@@ -1,4 +1,5 @@
 import Button from "./Button";
+import Notification from "./Notification";
 import classes from "../styles/ListItem.module.css";
 import { getDatabase, ref, remove, update } from "@firebase/database";
 import { useState } from "react";
@@ -7,26 +8,41 @@ import TextArea from "./TextArea";
 export default function ListItem({ text, id }) {
   const [edit, setEdit] = useState(false);
   const [todo, setTodo] = useState("");
+  const [notification, setNotification] = useState("");
+
   const db = getDatabase();
+  var notificationMsg = "";
+
   const textInputHandler = (textReceived) => {
     setTodo(textReceived);
   };
+
   const handleClick = (e) => {
     // Delete  an item from database
     if (e === "delete") {
+      setNotification("Your todo has been deleted!");
+      notificationMsg = "delete";
       remove(ref(db, id));
     }
 
+    // Edit an item
     if (e === "edit") {
       setEdit(true);
       setTodo(text);
     }
+
+    // Update an item
     if (e === "submit") {
+      setNotification("Your todo has been updated!");
       update(ref(db, id), {
         todo,
       });
+
       setEdit(false);
     }
+    setTimeout(() => {
+      setNotification(false);
+    }, 2000);
   };
 
   return (
@@ -42,7 +58,7 @@ export default function ListItem({ text, id }) {
           <div className={classes.editText}>
             <TextArea textInput={textInputHandler} value={todo} />
             <Button onClick={handleClick} btnType="btnEdit" name="submit">
-              Submit
+              Submit {notificationMsg}
             </Button>
           </div>
         ) : (
@@ -57,6 +73,7 @@ export default function ListItem({ text, id }) {
           </Button>
         )}
       </div>
+      {notification && <Notification notification_msg={notification} />}
     </li>
   );
 }
