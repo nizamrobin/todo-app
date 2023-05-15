@@ -33,7 +33,7 @@ export default function Todo() {
       setAddNotification(true);
       setTimeout(() => {
         setAddNotification(false);
-      }, 1000);
+      }, 2000);
       setTodo("");
     } else {
       setTodo("");

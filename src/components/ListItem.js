@@ -8,10 +8,8 @@ import TextArea from "./TextArea";
 export default function ListItem({ text, id }) {
   const [edit, setEdit] = useState(false);
   const [todo, setTodo] = useState("");
-  const [notification, setNotification] = useState("");
-
+  const [notification, setNotification] = useState(false);
   const db = getDatabase();
-  var notificationMsg = "";
 
   const textInputHandler = (textReceived) => {
     setTodo(textReceived);
@@ -21,7 +19,10 @@ export default function ListItem({ text, id }) {
     // Delete  an item from database
     if (e === "delete") {
       setNotification("Your todo has been deleted!");
-      notificationMsg = "delete";
+      remove(ref(db, id));
+    }
+    if (e === "done") {
+      setNotification("CONGRATS! You have completed your task");
       remove(ref(db, id));
     }
 
@@ -58,7 +59,7 @@ export default function ListItem({ text, id }) {
           <div className={classes.editText}>
             <TextArea textInput={textInputHandler} value={todo} />
             <Button onClick={handleClick} btnType="btnEdit" name="submit">
-              Submit {notificationMsg}
+              Submit
             </Button>
           </div>
         ) : (
