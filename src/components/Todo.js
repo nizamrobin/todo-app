@@ -13,7 +13,11 @@ export default function Todo() {
   const db = getDatabase(app);
   const [todo, setTodo] = useState("");
   const [todos, setTodos] = useState([]);
-  const [addNotification, setAddNotification] = useState(false);
+  const [notification, setNotification] = useState("");
+
+  const notificationHandler = (notificationReceive) => {
+    setNotification(notificationReceive);
+  };
 
   // fetch the input of textarea input field of TextArea comp and handle it
   const textInputHandler = (textReceived) => {
@@ -30,9 +34,9 @@ export default function Todo() {
           todo,
           id,
         });
-      setAddNotification(true);
+      setNotification("Your new todo has been added!");
       setTimeout(() => {
-        setAddNotification(false);
+        setNotification("");
       }, 2000);
       setTodo("");
     } else {
@@ -71,14 +75,17 @@ export default function Todo() {
       {todos.length > 0 && (
         <TodoList>
           {todos.map((todo) => (
-            <ListItem text={todo.todo} id={todo.id} />
+            <ListItem
+              key={todo.id}
+              text={todo.todo}
+              id={todo.id}
+              notificationHandler={notificationHandler}
+            />
           ))}
         </TodoList>
       )}
 
-      {addNotification && (
-        <Notification notification_msg="Your new todo has been added!" />
-      )}
+      {notification && <Notification notification_msg={notification} />}
     </article>
   );
 }
