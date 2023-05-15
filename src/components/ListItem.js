@@ -1,14 +1,15 @@
 import Button from "./Button";
-import Notification from "./Notification";
+// import Notification from "./Notification";
 import classes from "../styles/ListItem.module.css";
 import { getDatabase, ref, remove, update } from "@firebase/database";
 import { useState } from "react";
 import TextArea from "./TextArea";
 
-export default function ListItem({ text, id }) {
+export default function ListItem({ text, id, notificationHandler }) {
+  // console.log(setNotification);
   const [edit, setEdit] = useState(false);
   const [todo, setTodo] = useState("");
-  const [notification, setNotification] = useState(false);
+  // const [notification, setNotification] = useState(false);
   const db = getDatabase();
 
   const textInputHandler = (textReceived) => {
@@ -18,12 +19,12 @@ export default function ListItem({ text, id }) {
   const handleClick = (e) => {
     // Delete  an item from database
     if (e === "delete") {
-      setNotification("Your todo has been deleted!");
+      notificationHandler("Your todo has been deleted!");
       remove(ref(db, id));
     }
     if (e === "done") {
-      setNotification("CONGRATS! You have completed your task");
       remove(ref(db, id));
+      notificationHandler("CONGRATS! You have completed your task");
     }
 
     // Edit an item
@@ -34,7 +35,7 @@ export default function ListItem({ text, id }) {
 
     // Update an item
     if (e === "submit") {
-      setNotification("Your todo has been updated!");
+      notificationHandler("Your todo has been updated!");
       update(ref(db, id), {
         todo,
       });
@@ -42,7 +43,7 @@ export default function ListItem({ text, id }) {
       setEdit(false);
     }
     setTimeout(() => {
-      setNotification(false);
+      notificationHandler("");
     }, 2000);
   };
 
@@ -74,7 +75,7 @@ export default function ListItem({ text, id }) {
           </Button>
         )}
       </div>
-      {notification && <Notification notification_msg={notification} />}
+      {/* {notification && <Notification notification_msg={notification} />} */}
     </li>
   );
 }
