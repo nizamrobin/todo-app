@@ -1,14 +1,20 @@
 .todo {
   min-height: inherit;
-  background-color: #def5ff;
-  border-radius: 10px 10px 0 0;
+  background-color: var(--color-primary);
+  border-radius: 10px 10px 25px 25px;
+  height: 100%;
+  font-family: var(--font-primary);
 }
 
 /* todo Title */
 .todoTitle {
   text-align: center;
   text-transform: capitalize;
-  padding: 20px 0 0 0;
+  padding: 20px;
+  background-color: var(--color-accent);
+  color: var(--color-secondary);
+  border-radius: 10px 10px 0 0;
+  font-family: var(--font-secondary);
 }
 
 /* New Todo */
@@ -17,7 +23,7 @@
   justify-content: space-between;
   padding: 20px;
   margin: 20px 10px 30px;
-  background-color: #cee5f2;
+  background-color: var(--color-secondary);
   border-radius: 5px;
 }
 

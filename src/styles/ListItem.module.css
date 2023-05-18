@@ -6,6 +6,7 @@
   margin: 5px;
   border-radius: 2px;
   align-items: center;
+  /* background-color: var(--color-secondary); */
 }
 
 .listItemText {
@@ -16,7 +17,7 @@
 .listItemBtns {
   /* display: flex;
   justify-content: space-around; */
-  width: 100%;
+  /* width: 100%; */
   text-align: right;
 }
 
