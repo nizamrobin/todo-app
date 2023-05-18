@@ -25,9 +25,9 @@ export default function Todo() {
   };
 
   // add todo to list and clears textarea field when button add is clicked
-  const handleClick = (e) => {
-    // console.log(e.currentTarge.name);
-    if (e === "add") {
+  const handleClick = (name, e) => {
+    console.log(e);
+    if (name === "add") {
       const id = uuidv4().slice(0, 8);
       todo &&
         set(ref(db, id), {
@@ -64,7 +64,12 @@ export default function Todo() {
       <section className={classes.todoNew}>
         <TextArea textInput={textInputHandler} value={todo} />
         <div className={classes.todoInputBtns}>
-          <Button onClick={handleClick} btnType="btnTodoAdd" name="add">
+          <Button
+            type="submit"
+            onClick={handleClick}
+            btnType="btnTodoAdd"
+            name="add"
+          >
             <i class="fa-solid fa-plus"></i>
           </Button>
           <Button onClick={handleClick} btnType="btnTodoCancel" name="cancel">

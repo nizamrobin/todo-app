@@ -22,27 +22,27 @@
 }
 
 .btnTodoAdd {
-  background-color: #02c39a;
+  background-color: var(--color-accent);
   color: #fff;
 }
 .btnTodoCancel {
-  background-color: #dd2d4a;
+  background-color: var(--color-accent);
   color: #fff;
 }
 .btnDone {
-  background-color: #02c39a;
+  background-color: var(--color-accent);
   color: #fff;
 }
 
 .btnEdit {
-  background-color: #55dde0;
+  background-color: var(--color-accent);
   color: #fff;
 }
 .btnDelete {
-  background-color: #dd2d4a;
+  background-color: var(--color-accent);
   color: #fff;
 }
 .btnUndo {
-  background-color: #55dde0;
+  background-color: var(--color-accent);
   color: #333;
 }
