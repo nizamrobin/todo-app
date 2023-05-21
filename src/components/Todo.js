@@ -26,7 +26,7 @@ export default function Todo() {
 
   // add todo to list and clears textarea field when button add is clicked
   const handleClick = (name, e) => {
-    console.log(e);
+    // console.log(e);
     if (name === "add") {
       const id = uuidv4().slice(0, 8);
       todo &&
