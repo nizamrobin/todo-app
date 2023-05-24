@@ -1,47 +1,20 @@
-import TextArea from "./TextArea";
 import TodoList from "./TodoList";
-import Button from "./Button";
 import Notification from "./Notification";
 import classes from "../styles/Todo.module.css";
 import { useEffect, useState } from "react";
 import ListItem from "./ListItem";
 import { app } from "../firebase";
-import { getDatabase, onValue, ref, set } from "firebase/database";
-import { v4 as uuidv4 } from "uuid";
+import { getDatabase, onValue, ref } from "firebase/database";
+import TodoNew from "./TodoNew";
 
 export default function Todo() {
   const db = getDatabase(app);
-  const [todo, setTodo] = useState("");
+  // console.log(db);
   const [todos, setTodos] = useState([]);
   const [notification, setNotification] = useState("");
 
   const notificationHandler = (notificationReceive) => {
     setNotification(notificationReceive);
-  };
-
-  // fetch the input of textarea input field of TextArea comp and handle it
-  const textInputHandler = (textReceived) => {
-    setTodo(textReceived);
-  };
-
-  // add todo to list and clears textarea field when button add is clicked
-  const handleClick = (name, e) => {
-    // console.log(e);
-    if (name === "add") {
-      const id = uuidv4().slice(0, 8);
-      todo &&
-        set(ref(db, id), {
-          todo,
-          id,
-        });
-      setNotification("Your new todo has been added!");
-      setTimeout(() => {
-        setNotification("");
-      }, 2000);
-      setTodo("");
-    } else {
-      setTodo("");
-    }
   };
 
   // Read data from database(here: firebase)
@@ -60,32 +33,21 @@ export default function Todo() {
   return (
     <article className={classes.todo}>
       <h1 className={classes.todoTitle}>Your list to do</h1>
-
-      <section className={classes.todoNew}>
-        <TextArea textInput={textInputHandler} value={todo} />
-        <div className={classes.todoInputBtns}>
-          <Button
-            type="submit"
-            onClick={handleClick}
-            btnType="btnTodoAdd"
-            name="add"
-          >
-            <i class="fa-solid fa-plus"></i>
-          </Button>
-          <Button onClick={handleClick} btnType="btnTodoCancel" name="cancel">
-            <i class="fa-solid fa-xmark"></i>
-          </Button>
-        </div>
-      </section>
+      <TodoNew
+        placeholder={"What you'r planning to do?"}
+        classes={"todoNewMain"}
+        notificationHandler={notificationHandler}
+        name="todoNewMain"
+      />
       {todos.length > 0 && (
         <TodoList>
-          {todos.map((todo) => (
+          {todos.map((item) => (
             <ListItem
-              key={todo.id}
-              text={todo.todo}
-              id={todo.id}
+              key={item.id}
+              text={item.todo}
+              id={item.id}
               notificationHandler={notificationHandler}
-            />
+            ></ListItem>
           ))}
         </TodoList>
       )}

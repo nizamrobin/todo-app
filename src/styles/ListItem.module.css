@@ -1,12 +1,18 @@
 .listItem {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  /* justify-content: space-between; */
   padding: 10px;
   border: 1px solid #a6daf8;
   margin: 5px;
   border-radius: 2px;
-  align-items: center;
+  /* align-items: center; */
   /* background-color: var(--color-secondary); */
+}
+
+.listItemHead {
+  display: flex;
+  justify-content: space-between;
 }
 
 .listItemText {

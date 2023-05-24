@@ -7,12 +7,12 @@ export default function TextArea(props) {
   };
   return (
     <textarea
-      name="todoInput"
+      name={props.name}
       id="todoInput"
       className={classes.textArea}
       cols="50"
       value={props.value}
-      placeholder="What you'r planning to do?"
+      placeholder={props.placeholder}
       onChange={handleInputChange}
     ></textarea>
   );
