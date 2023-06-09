@@ -1,17 +1,34 @@
 import Button from "./Button";
 import classes from "../styles/ListItem.module.css";
 import { getDatabase, set, ref, remove, update } from "@firebase/database";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import TextArea from "./TextArea";
 import ListItemInfo from "./ListItemInfo";
 import TodoNew from "./TodoNew";
 import TokenList from "./TokenList";
+import TokenListItem from "./TokenListItem";
+import { onValue } from "firebase/database";
 // import TodoList from "./TodoList";
-export default function ListItem({ text, id, notificationHandler, children }) {
+export default function ListItem({ text, id, notificationHandler }) {
   const [edit, setEdit] = useState(false);
   const [todo, setTodo] = useState("");
   const [undo, setUndo] = useState(false);
+  const [subTodos, setSubTodos] = useState([]);
   const db = getDatabase();
+
+  // Read subtask data from database(here: firebase)
+  useEffect(() => {
+    // console.log(id);
+    onValue(ref(db, id + "/subTodo/"), (snapshot) => {
+      setSubTodos([]);
+      const data = snapshot.val();
+      if (data !== null) {
+        Object.values(data).map((todo) =>
+          setSubTodos((oldArray) => [...oldArray, todo])
+        );
+      }
+    });
+  }, [db, id]);
 
   // fetch the input of textarea input field of TextArea comp and handle it
   const textInputHandler = (textReceived) => {
@@ -96,7 +113,20 @@ export default function ListItem({ text, id, notificationHandler, children }) {
           )}
         </div>
       </div>
-      <TokenList />
+      {subTodos.length > 0 && (
+        <TokenList>
+          {subTodos.map((item) => (
+            <TokenListItem
+              numberOfItems={subTodos.length}
+              parentId={id}
+              key={item.id}
+              text={item.todo}
+              id={item.id}
+              notificationHandler={notificationHandler}
+            ></TokenListItem>
+          ))}
+        </TokenList>
+      )}
       <TodoNew
         id={id}
         placeholder={"Make your task list..."}

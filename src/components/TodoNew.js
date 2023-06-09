@@ -14,7 +14,6 @@ export default function TodoNew(props) {
   // fetch the input of textarea input field of TextArea comp and handle it
   const textInputHandler = (textReceived) => {
     setTodo(textReceived);
-    // setSubTodo(textReceived);
   };
 
   // add todo to list and clears textarea field when button add is clicked

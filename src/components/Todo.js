@@ -9,7 +9,6 @@ import TodoNew from "./TodoNew";
 
 export default function Todo() {
   const db = getDatabase(app);
-  // console.log(db);
   const [todos, setTodos] = useState([]);
   const [notification, setNotification] = useState("");
 
@@ -47,7 +46,7 @@ export default function Todo() {
               text={item.todo}
               id={item.id}
               notificationHandler={notificationHandler}
-            ></ListItem>
+            />
           ))}
         </TodoList>
       )}
