@@ -4,7 +4,10 @@ import { getDatabase, set, ref, remove, update } from "@firebase/database";
 import { useState } from "react";
 import TextArea from "./TextArea";
 import ListItemInfo from "./ListItemInfo";
-export default function ListItem({ text, id, notificationHandler }) {
+import TodoNew from "./TodoNew";
+import TokenList from "./TokenList";
+// import TodoList from "./TodoList";
+export default function ListItem({ text, id, notificationHandler, children }) {
   const [edit, setEdit] = useState(false);
   const [todo, setTodo] = useState("");
   const [undo, setUndo] = useState(false);
@@ -18,15 +21,13 @@ export default function ListItem({ text, id, notificationHandler }) {
     if (name === "delete") {
       setUndo(true);
       setTodo(text);
+      notificationHandler("Your todo has been deleted!");
       setTimeout(() => {
         remove(ref(db, id));
-        notificationHandler("Your todo has been deleted!");
       }, 1000);
     }
     if (name === "undo") {
-      // setTodo(text);
       setUndo(false);
-      console.log(todo, id);
       setTimeout(() => {
         notificationHandler("Your todo has been restored!");
         todo &&
@@ -63,36 +64,46 @@ export default function ListItem({ text, id, notificationHandler }) {
   };
 
   return (
-    <li className={classes.listItem}>
-      {!edit && !undo && <p className={classes.listItemText}>{text}</p>}
+    <li className={classes.listItem} id={id}>
+      <div className={classes.listItemHead}>
+        {!edit && !undo && <p className={classes.listItemText}>{text}</p>}
 
-      <div className={classes.listItemBtns}>
-        {!edit && !undo && (
-          <Button onClick={handleClick} btnType="btnDone" name="done">
-            <i class="fa-solid fa-check"></i>
-          </Button>
-        )}
+        <div className={classes.listItemBtns}>
+          {!edit && !undo && (
+            <Button onClick={handleClick} btnType="btnDone" name="done">
+              <i class="fa-solid fa-check"></i>
+            </Button>
+          )}
 
-        {edit ? (
-          <div className={classes.editText}>
-            <TextArea textInput={textInputHandler} value={todo} />
-            <Button onClick={handleClick} btnType="btnEdit" name="submit">
-              Submit
-            </Button>
-          </div>
-        ) : undo ? (
-          <ListItemInfo onClick={handleClick} />
-        ) : (
-          <>
-            <Button onClick={handleClick} btnType="btnEdit" name="edit">
-              <i class="fa-solid fa-pen"></i>
-            </Button>
-            <Button onClick={handleClick} btnType="btnDelete" name="delete">
-              <i class="fa-solid fa-trash"></i>
-            </Button>
-          </>
-        )}
+          {edit ? (
+            <div className={classes.editText}>
+              <TextArea textInput={textInputHandler} value={todo} />
+              <Button onClick={handleClick} btnType="btnEdit" name="submit">
+                Submit
+              </Button>
+            </div>
+          ) : undo ? (
+            <ListItemInfo onClick={handleClick} />
+          ) : (
+            <>
+              <Button onClick={handleClick} btnType="btnEdit" name="edit">
+                <i class="fa-solid fa-pen"></i>
+              </Button>
+              <Button onClick={handleClick} btnType="btnDelete" name="delete">
+                <i class="fa-solid fa-trash"></i>
+              </Button>
+            </>
+          )}
+        </div>
       </div>
+      <TokenList />
+      <TodoNew
+        id={id}
+        placeholder={"Make your task list..."}
+        classes={""}
+        notificationHandler={notificationHandler}
+        name="todoNewSub"
+      />
     </li>
   );
 }

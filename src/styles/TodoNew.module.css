@@ -1,0 +1,21 @@
+/* New Todo */
+.todoNew {
+  display: flex;
+  background-color: var(--color-secondary);
+  border-radius: 5px;
+}
+
+.todoNewMain {
+  padding: 20px;
+  margin: 20px 10px 30px;
+}
+
+.todoNewSub {
+  padding: 0;
+}
+
+.todoInputBtns {
+  display: flex;
+  margin-left: 20px;
+  align-items: center;
+}
