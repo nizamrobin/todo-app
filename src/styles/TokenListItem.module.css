@@ -1,0 +1,10 @@
+.token {
+  display: inline-block;
+  margin-right: 10px;
+  border: 2px solid var(--color-accent);
+  border-radius: 5px;
+  padding: 4px;
+  color: var(--color-accent);
+  font-family: var(--font-secondary);
+  font-size: 12px;
+}
