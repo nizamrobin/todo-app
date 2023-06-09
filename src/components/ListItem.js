@@ -18,14 +18,14 @@ export default function ListItem({ text, id, notificationHandler, children }) {
     setTodo(textReceived);
   };
   const handleClick = (name) => {
-    // if (name === "delete") {
-    //   setUndo(true);
-    //   setTodo(text);
-    //   notificationHandler("Your todo has been deleted!");
-    //   setTimeout(() => {
-    //     remove(ref(db, id));
-    //   }, 1000);
-    // }
+    if (name === "delete") {
+      setUndo(true);
+      setTodo(text);
+      notificationHandler("Your todo has been deleted!");
+      setTimeout(() => {
+        remove(ref(db, id));
+      }, 1000);
+    }
     if (name === "undo") {
       setUndo(false);
       setTimeout(() => {
