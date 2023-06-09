@@ -1,4 +1,4 @@
-import classes from "../styles/TokenList.module.css";
+import classes from "../styles/TokenListItem.module.css";
 import Button from "./Button";
 import { remove, ref, getDatabase } from "firebase/database";
 
@@ -32,12 +32,12 @@ export default function TokenListItem({
   };
   return (
     <li className={classes.token} id={id}>
-      {text} <span>&nbsp;&nbsp;&nbsp;</span>
-      <Button onClick={handleClick} btnType="btnTodoAdd" name="done">
-        <i class="fa-solid fa-check"></i>
+      {text} <span>&nbsp;</span>
+      <Button onClick={handleClick} btnType="btnSubTodoDone" name="done">
+        <i class="fa-solid fa-check fa-2xs"></i>
       </Button>
-      <Button onClick={handleClick} btnType="btnTodoCancel" name="delete">
-        <i class="fa-solid fa-xmark"></i>
+      <Button onClick={handleClick} btnType="btnSubTodoCancel" name="delete">
+        <i class="fa-solid fa-xmark fa-2xs"></i>
       </Button>
     </li>
   );
