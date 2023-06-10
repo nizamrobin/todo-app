@@ -20,8 +20,9 @@ export default function TokenListItem({
     if (name === "done") {
       numberOfItems--;
       remove(ref(db, parentId + "/subTodo/" + id));
+      notificationHandler("CONGRATS! You have completed one of your tasks.");
       if (numberOfItems === 0) {
-        notificationHandler("CONGRATS!");
+        notificationHandler("CONGRATULATIONS!");
         remove(ref(db, parentId));
       }
     }
