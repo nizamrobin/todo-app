@@ -1,9 +1,14 @@
 .todo {
-  min-height: inherit;
   background-color: var(--color-primary);
   border-radius: 10px 10px 25px 25px;
-  height: 100%;
   font-family: var(--font-primary);
+  height: 90%;
+  width: 90%;
+  margin: auto;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 /* todo Title */
@@ -15,4 +20,23 @@
   color: var(--color-secondary);
   border-radius: 10px 10px 0 0;
   font-family: var(--font-secondary);
+}
+
+.developer {
+  padding: 7px;
+  text-align: center;
+  color: var(--color-secondary);
+  background-color: var(--color-accent);
+  font-weight: 100;
+  font-size: 10px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  border-radius: 0 0 25px 25px;
+}
+
+@media screen and (min-width: 768px) {
+  .todo {
+    width: 50%;
+  }
 }
