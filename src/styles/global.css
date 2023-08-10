@@ -1,7 +1,7 @@
 * {
   border: 0;
   margin: 0;
-  /* position: relative; */
+  box-sizing: border-box;
   --color-primary: #83c5be;
   --color-secondary: #edf6f9;
   --color-accent: #006d77;
@@ -9,7 +9,14 @@
   --font-primary: "Noto Sans", sans-serif;
   --font-secondary: "Roboto", sans-serif;
 }
-
 body {
+  height: 100vh;
   background-color: var(--color-secondary);
+}
+#root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 95%;
+  width: 100vw;
 }

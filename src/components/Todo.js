@@ -50,6 +50,7 @@ export default function Todo() {
           ))}
         </TodoList>
       )}
+      <h5 className={classes.developer}>Build with love by nizamrobin</h5>
 
       {notification && <Notification notification_msg={notification} />}
     </article>
